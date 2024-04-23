@@ -31,6 +31,12 @@ public class IndexController {
 		List<Usuario> users = usuarioRepository.findByDeletedFalseOrderByCreationDate();
 		return users;
 	}
+	
+	@GetMapping(path = "/users/{id}")
+	public Usuario getUsuarioById(@PathVariable String id) {
+		Usuario users = usuarioRepository.findByIdAndDeletedFalse(UUID.fromString(id));
+		return users;
+	}
 
 	@PostMapping(path = "/users")
 	public Usuario getUsuario(@RequestBody MultiValueMap<String, String> form) {
